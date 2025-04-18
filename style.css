@@ -26,13 +26,17 @@ body {
   
   /* Nav bar */
   nav {
-    background-color: #b81919;
-    padding: 12px;
-    text-align: center;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: #b81919;
     z-index: 1000;
+    transition: top 0.3s ease; /* smooth slide */
   }
+  
+  
   nav ul {
     display: flex;
     flex-direction: row;
@@ -1043,27 +1047,67 @@ body {
   margin-right: 20px;
   opacity: 0.8;
 }
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding-left: 0;
-  }
-
-  nav a {
-    font-size: 1rem;
-    padding: 6px 10px;
-    display: block;
-  }
-  .last-updated {
-    display: block;
-    text-align: center;
-    margin: 10px auto;
-    font-size: 0.75rem;
-    padding: 4px 10px;
+/* Desktop nav only */
+@media (min-width: 769px) {
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 }
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+}
+
+/* Bottom Mobile Navbar */
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    z-index: 1001;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #444;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s;
+  }
+
+  .bottom-nav .nav-item .icon {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+  .bottom-nav .nav-item.active {
+    color: #b81919;
+    font-weight: bold;
+  }
+
+  .bottom-nav .nav-item.active .icon {
+    font-size: 22px;
+  }
+}
+
 .last-updated {
   display: inline-block;
   background: #ffe08a;
@@ -1073,4 +1117,7 @@ body {
   margin: 10px 0;
   font-weight: 500;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+section {
+  scroll-margin-top: 80px; /* Adjust if your navbar is taller/shorter */
 }

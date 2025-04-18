@@ -12,17 +12,20 @@
 
 </head>
 <body>
-  <nav>
-    <a href="#about-section">About</a>
-    <a href="#projects-section">Projects</a>
-    <a href="#resume-section">Resume</a>
-    <a href="#certifications-section">Certifications</a>
-    <a href="#contact-section">Contact</a>
+  <nav id="mobile-nav">
+    <ul>
+      <li><a href="#about-section">About</a></li>
+      <li><a href="#projects-section">Projects</a></li>
+      <li><a href="#resume-section">Resume</a></li>
+      <li><a href="#certifications-section">Certifications</a></li>
+      <li><a href="#contact-section">Contact</a></li>
+    </ul>
   </nav>
+  
 
 
 
-  <section class="section about-container" id="about-section">
+  <section class="section fade-in" id="about-section">
     <div class="about-card">
       <div class="about-img-wrap">
         <img src="assets/images/profile.jpeg" alt="My Profile Picture" />
@@ -81,7 +84,7 @@
   
 
   
-  <section class="section" id="resume-section">
+  <section class="section fade-in" id="resume-section">
     <h2>Resume</h2>
     <div class="last-updated">Last updated: April 2025</div>
 
@@ -103,7 +106,7 @@
   </section>
   
 
-  <section class="section" id="projects-section">
+  <section class="section fade-in" id="projects-section">
     <div id="skills-container"></div>
   
     <h2>Featured Projects</h2>
@@ -112,7 +115,7 @@
   
 
 
-  <section class="section" id="certifications-section">
+  <section class="section fade-in" id="certifications-section">
     <h2>Certifications</h2>
     <div class="cert-grid">
         <div class="cert-card">
@@ -272,6 +275,33 @@
       document.getElementById('skills-container').innerHTML = data;
     });
 </script>
+
+<div class="bottom-nav">
+  <a href="#about-section" class="nav-item active">
+    <i class="icon">🏠</i>
+    <span>About</span>
+  </a>
+  <a href="#projects-section" class="nav-item">
+    <i class="icon">📂</i>
+    <span>Projects</span>
+  </a>
+  <a href="#resume-section" class="nav-item">
+    <i class="icon">📄</i>
+    <span>Resume</span>
+  </a>
+  <a href="#certifications-section" class="nav-item">
+    <i class="icon">🎓</i>
+    <span>Certs</span>
+  </a>
+  <a href="#contact-section" class="nav-item">
+    <i class="icon">📞</i>
+    <span>Contact</span>
+  </a>
+</div>
+
+
+
+
 
   
 </body>
