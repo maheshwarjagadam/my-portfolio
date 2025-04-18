@@ -1012,15 +1012,20 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.signature-tag {
-  text-align: right;
+.signature {
+  font-family: 'italic', cursive;
+  font-size: 24px;
   font-style: italic;
-  font-weight: 500;
-  color: #555;
-  font-size: 16px;
-  margin-top: 20px;
-  padding-right: 10px;
+  color: #b81919;
+  text-align: right;
+  margin-top: 30px;
+  margin-right: 20px;
+  opacity: 0.8;
 }
+border-bottom: 2px solid #b81919;
+display: inline-block;
+padding-bottom: 5px;
+
 
 
 
