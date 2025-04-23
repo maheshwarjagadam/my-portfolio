@@ -10,22 +10,13 @@
 
 
 
+
 </head>
 <body>
-  <nav class="desktop-nav">
-  <ul>
-    <li><a href="#about-section">About</a></li>
-    <li><a href="#projects-section">Projects</a></li>
-    <li><a href="#resume-section">Resume</a></li>
-    <li><a href="#certifications-section">Certifications</a></li>
-    <li><a href="#contact-section">Contact</a></li>
-  </ul>
-</nav>
+  <!-- This will load navdesk.html -->
+  <div id="desktop-nav-placeholder"></div>
 
-
-
-
-  <section class="section fade-in" id="about-section">
+  <section class="section" id="about-section">
     <div class="about-card">
       <div class="about-img-wrap">
         <img src="assets/images/profile.jpeg" alt="My Profile Picture" />
@@ -78,13 +69,15 @@
       </div>
     </div>
   </section>
+   
+  <section class="section" id="projects-section">
+    <div id="skills-container"></div>
   
-  
-  
-  
+    <h2>Featured Projects</h2>
+    <div id="featured-projects-container"></div>
+  </section>
 
-  
-  <section class="section fade-in" id="resume-section">
+  <section class="section" id="resume-section">
     <h2>Resume</h2>
     <div class="last-updated">Last updated: April 2025</div>
 
@@ -105,17 +98,7 @@
     </div>
   </section>
   
-
-  <section class="section fade-in" id="projects-section">
-    <div id="skills-container"></div>
-  
-    <h2>Featured Projects</h2>
-    <div id="featured-projects-container"></div>
-  </section>
-  
-
-
-  <section class="section fade-in" id="certifications-section">
+  <section class="section" id="certifications-section">
     <h2>Certifications</h2>
     <div class="cert-grid">
         <div class="cert-card">
@@ -213,7 +196,7 @@
 
   </section>
 
-  <section class="section fade-in" id="contact-section">
+  <section class="section" id="contact-section">
     <h2>Contact</h2>
     <p>If you'd like to get in touch, fill out the form below or reach out using the links provided.</p>
   
@@ -240,24 +223,6 @@
     </ul>
   </section>
   
-  
-
-  <script>
-     const links = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll(".section");
-
-    links.forEach((link) => {
-      link.addEventListener("click", function (e) {
-        /*e.preventDefault();*/
-        const targetId = this.getAttribute("href").replace("#", "");
-        sections.forEach((section) => section.classList.remove("active"));
-        document.getElementById(targetId).classList.add("active");
-      });
-    });  
-
-    document.getElementById("about-section").classList.add("active");
-  </script>
-
   <!-- ✅ JavaScript to load featured-projects.html -->
   <script>
     fetch('featured-projects.html')
@@ -276,28 +241,8 @@
     });
 </script>
 
-<div class="bottom-nav">
-  <a href="#about-section" class="nav-item active">
-    <i class="icon">🏠</i>
-    <span>About</span>
-  </a>
-  <a href="#projects-section" class="nav-item ">
-    <i class="icon">📂</i>
-    <span>Projects</span>
-  </a>
-  <a href="#resume-section" class="nav-item">
-    <i class="icon">📄</i>
-    <span>Resume</span>
-  </a>
-  <a href="#certifications-section" class="nav-item">
-    <i class="icon">🎓</i>
-    <span>Certs</span>
-  </a>
-  <a href="#contact-section" class="nav-item">
-    <i class="icon">📞</i>
-    <span>Contact</span>
-  </a>
-</div>
+<!-- This will load navmobile.html -->
+<div id="mobile-nav-placeholder"></div>
 
 <script>
   // Bottom nav smooth scroll handler
@@ -314,10 +259,80 @@
 </script>
 
 
+<script>
+  document.querySelectorAll('.bottom-nav a').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault(); // stop default jump
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
 
 
 
+<script>
+  // Load Desktop Nav
+  fetch('navdesk.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('desktop-nav-placeholder').innerHTML = data;
+    });
+  
+  // Load Mobile Nav
+  fetch('navmobile.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('mobile-nav-placeholder').innerHTML = data;
+  
+      // Re-attach scroll behavior after loading nav
+      document.querySelectorAll('.bottom-nav a').forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    });
+  </script>
 
+
+<script>
+  // Load the desktop navigation
+  fetch('navdesk.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('desktop-nav-placeholder').innerHTML = data;
+
+      // ✅ Attach section-switching behavior AFTER nav is loaded
+      const navLinks = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll(".section");
+
+      navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            sections.forEach(section => section.classList.remove("active"));
+            targetSection.classList.add("active");
+          }
+        });
+      });
+
+      // Show the About section by default
+      document.getElementById("about-section").classList.add("active");
+    });
+</script>
+
+
+  
   
 </body>
 
