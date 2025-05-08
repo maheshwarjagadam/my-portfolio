@@ -1231,3 +1231,29 @@ section {
 .section.active {
   display: block;
 }
+
+.experience-entry {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-left: 4px solid #b81919;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.experience-entry h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #b81919;
+}
+
+.experience-duration {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 10px;
+}
+
+.experience-entry p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}

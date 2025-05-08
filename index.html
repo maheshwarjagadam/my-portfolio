@@ -71,33 +71,14 @@
   </section>
    
   <section class="section" id="projects-section">
-    <div id="skills-container"></div>
+    
   
     <h2>Featured Projects</h2>
     <div id="featured-projects-container"></div>
+
+    <div id="skills-container"></div>
   </section>
 
-  <section class="section" id="resume-section">
-    <h2>Resume</h2>
-    <div class="last-updated">Last updated: April 2025</div>
-
-    <p>
-      I’m currently pursuing my Master's in Computer Science at Anderson University (GPA: 3.5) and completed my B.Tech in Computer Science from GITAM (85%).  
-    </p>
-    <p>
-      Download or preview my latest resume below to get a complete view of my education, certifications, technical skills, and project experience.
-    </p>
-  
-    <div class="resume-actions">
-      <a href="assets/certificates/UMA_JAGADAM_Resume.pdf" class="resume-btn" download>
-        📥 Download Resume (PDF)
-      </a>
-      <a href="assets/certificates/UMA_JAGADAM_Resume.pdf" class="resume-btn secondary" target="_blank">
-        👁️ Preview in Browser
-      </a>
-    </div>
-  </section>
-  
   <section class="section" id="certifications-section">
     <h2>Certifications</h2>
     <div class="cert-grid">
@@ -194,6 +175,31 @@
 
 
 
+  </section>
+
+  <section class="section" id="experience-section">
+    <div id="experience-container"></div>
+  </section>
+
+  <section class="section" id="resume-section">
+    <h2>Resume</h2>
+    <div class="last-updated">Last updated: April 2025</div>
+
+    <p>
+      I’m currently pursuing my Master's in Computer Science at Anderson University (GPA: 3.5) and completed my B.Tech in Computer Science from GITAM (85%).  
+    </p>
+    <p>
+      Download or preview my latest resume below to get a complete view of my education, certifications, technical skills, and project experience.
+    </p>
+  
+    <div class="resume-actions">
+      <a href="assets/certificates/Uma Maheshwara Rao Jagadam resume.pdf" class="resume-btn" download>
+        📥 Download Resume (PDF)
+      </a>
+      <a href="assets/certificates/Uma Maheshwara Rao Jagadam resume.pdf" class="resume-btn secondary" target="_blank">
+        👁️ Preview in Browser
+      </a>
+    </div>
   </section>
 
   <section class="section" id="contact-section">
@@ -329,6 +335,14 @@
 
       // Show the About section by default
       document.getElementById("about-section").classList.add("active");
+    });
+</script>
+
+<script>
+  fetch('experience.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('experience-container').innerHTML = data;
     });
 </script>
 
