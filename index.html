@@ -80,102 +80,10 @@
   </section>
 
   <section class="section" id="certifications-section">
-    <h2>Certifications</h2>
-    <div class="cert-grid">
-        <div class="cert-card">
-            <a href="assets/images/python_basic certificate.png" target="_blank">
-              <img src="assets/images/python_basic certificate.png" alt="Python Certificate">
-            </a>
-            <p>Python (Basic) – HackerRank</p>
-            <p>Certified in Python basics: syntax, loops, and problem-solving skills.</p>
-        </div>
-
-        <div class="cert-card">
-            <a href="assets/images/sql_basic certificate.png" target="_blank">
-              <img src="assets/images/sql_basic certificate.png" alt="Python Certificate">
-            </a>
-            <p>SQL (Basic) – HackerRank</p>
-            <p>Certified in SQL basics: SELECT queries, filtering, and simple joins.</p>
-        </div>
-
-        <div class="cert-card">
-            <a href="assets/images/problem_solving_basic certificate.png" target="_blank">
-              <img src="assets/images/problem_solving_basic certificate.png" alt="Python Certificate">
-            </a>
-            <p>Problem Solving (Basic) – HackerRank</p>
-            <p>Solved logic-based challenges using loops, conditionals, and arrays.</p>
-        </div>
-
-        <div class="cert-card">
-            <a href="assets/images/problem_solving_intermediate certificate.png" target="_blank">
-              <img src="assets/images/problem_solving_intermediate certificate.png" alt="Python Certificate">
-            </a>
-            <p>Problem Solving (Intermediate) – HackerRank</p>
-            <p>Efficiently tackled complex challenges using algorithms and data structures.</p>
-        </div>
-
-        
-
-        <div class="cert-card">
-            <a href="assets/images/1634217222960.jpg" target="_blank">
-              <img src="assets/images/1634217222960.jpg" alt="Internship Certificate" />
-            </a>
-            <p>AI Internship – Zebo.AI with Verzeo</p>
-            <p>Worked on AI projects involving data preprocessing and model training.</p>
-        </div>
-    </div>
-
-    <!--<h3>My HackerRank Badges</h3>
-    <img src="hacker rank badges.png" class="badge-img" alt="HackerRank Badges" />-->
-
-    <h3>My HackerRank Badges</h3>
-    <div class="badge-row gold-badge">
-        <div class="badge-left">
-          <img src="https://hrcdn.net/fcore/assets/badges/python-f70befd824.svg" class="badge-icon" alt="Python">
-          <div class="badge-stars">★★★★★</div>
-        </div>
-        <div class="badge-right">
-          <h4>Python</h4>
-          <p>Completed the Python (Basic) certification by solving real-world coding challenges. Demonstrated strong understanding of Python fundamentals.</p>
-        </div>
-    </div>
-
-    <div class="badge-row silver-badge">
-        <div class="badge-left">
-          <img src="https://hrcdn.net/fcore/assets/badges/problem-solving-ecaf59a612.svg" class="badge-icon" alt="Problem Solving">
-          <div class="badge-stars">★★★★☆</div>
-        </div>
-        <div class="badge-right">
-          <h4>Problem Solving</h4>
-          <p>Earned by solving logic-based challenges involving data structures and algorithms efficiently.</p>
-        </div>
-    </div>
-    
-    <div class="badge-row silver-badge">
-        <div class="badge-left">
-          <img src="https://hrcdn.net/fcore/assets/badges/java-9d05b1f559.svg" class="badge-icon" alt="Java">
-          <div class="badge-stars">★★★★☆</div>
-        </div>
-        <div class="badge-right">
-          <h4>Java</h4>
-          <p>Certified in Java (Basic) after completing OOP programming challenges and demonstrating strong coding skills.</p>
-        </div>
-    </div>
-
-    <div class="badge-row silver-badge">
-        <div class="badge-left">
-          <img src="https://hrcdn.net/fcore/assets/badges/30-days-of-code-a772ae4c2f.svg" class="badge-icon" alt="30 Days">
-          <div class="badge-stars">★★★★☆</div>
-        </div>
-        <div class="badge-right">
-          <h4>30 Days of Code</h4>
-          <p>Completed 30 Days of Code challenge to build consistency and sharpen problem-solving and development skills.</p>
-        </div>
-    </div>
-
-
+    <div id="certifications-placeholder"></div>
 
   </section>
+
 
   <section class="section" id="experience-section">
     <div id="experience-container"></div>
@@ -346,8 +254,71 @@
     });
 </script>
 
+<script>
+  function showMainCert(tab) {
+    const allMains = document.querySelectorAll('.cert-main');
+    allMains.forEach(div => div.classList.remove('active'));
+    document.getElementById(`main-${tab}`).classList.add('active');
 
-  
+    // Reset sub-cert visibility when switching
+    if (tab === "professional") {
+      showSubCert('ibm'); // default to IBM when toggling back
+    }
+  }
+
+  function showSubCert(tab) {
+    const allSubs = document.querySelectorAll('.cert-sub');
+    allSubs.forEach(div => div.classList.remove('active'));
+    document.getElementById(`cert-${tab}`).classList.add('active');
+  }
+</script>
+
+<script>
+  fetch('certifications.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('certifications-placeholder').innerHTML = data;
+    });
+</script>
+
+<script>
+  // Toggle between Professional and HackerRank main views
+  function showCertTab(tab) {
+    document.getElementById("professional").style.display = (tab === "professional") ? "block" : "none";
+    document.getElementById("hackerrank").style.display = (tab === "hackerrank") ? "block" : "none";
+
+    // Update active button style
+    const buttons = document.querySelectorAll(".cert-tab-btn");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`.cert-tab-btn[onclick*="${tab}"]`).classList.add("active");
+
+    // Reset IBM as default inside professional
+    if (tab === "professional") {
+      showSubCert('ibm');
+    }
+  }
+
+  // Toggle between IBM and Microsoft inside Professional
+  function showSubCert(cert) {
+    document.getElementById("ibm").style.display = (cert === "ibm") ? "block" : "none";
+    document.getElementById("microsoft").style.display = (cert === "microsoft") ? "block" : "none";
+
+    // Update sub-button styles
+    const subBtns = document.querySelectorAll(".sub-cert-btn");
+    subBtns.forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`.sub-cert-btn[onclick*="${cert}"]`).classList.add("active");
+  }
+
+  // Set default view on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    showCertTab("professional");
+    showSubCert("ibm");
+  });
+</script>
+
+
+
+
   
 </body>
 
